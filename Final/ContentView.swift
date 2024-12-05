@@ -67,12 +67,17 @@ struct ContentView: View {
                 }
                 ZStack {
                     Image("Presents 1").resizable().frame(width: 100, height: 100).offset(x: 0, y: -120)
+                    Image("Presents 2").resizable().frame(width: 100, height: 100).offset(x: 70, y: -120)
+                    Image("Presents 2").resizable().frame(width: 100, height: 100).offset(x: -70, y: -120)
+                    Image("Wreath").resizable().frame(width: 200, height: 200).offset(x: 10, y: 130)
+                    Image("Holly").resizable().frame(width: 100, height: 100).offset(x: -100, y: 160)
+                    Image("Holly").resizable().frame(width: 100, height: 100).offset(x: 100, y: 160)
                 }
                 VStack {
                     Text("Instructions").font(Font.custom("Times New Roman", size: 30)).bold()
                     Spacer()
                     VStack {
-                        Text("To win: a player must guess the correct price of a present, out of three prices.")
+                        Text("To win: a player must guess the correct price of a present out of three prices.")
                             .font(Font.custom("Times New Roman", size: 25))
                             .padding()
                         Text("Points are counted based on number of correct guesses.").offset(x: 0, y: -25)
