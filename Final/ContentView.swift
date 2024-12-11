@@ -11,19 +11,25 @@ struct ContentView: View {
     @State private var rotation = 0.0
     @State private var randomValue = 0
     @State private var turnScore = 0
+    @State private var CostPresOne = 200
+    @State private var CostPresTwo = 100
+    @State private var CostPresThree = 50
+    @State private var CostPresFoyr = 75
+   @State private var GuessPriceOne = ""
     var body: some View {
         ZStack {
             NavigationView {
                 ZStack {
                     Color.green.opacity(0.7).ignoresSafeArea()
-                    HStack {
-                        Image("shopping \(randomValue)")
-                            .resizable().frame(width: 170, height: 170)
-                            .offset(x:-10, y: -100)
-                            .rotationEffect(.degrees(rotation))
-                           
+                    ZStack {
+                        HStack {
+                            Image("shopping \(randomValue)")
+                                .resizable().frame(width: 170, height: 170)
+                                .rotationEffect(.degrees(rotation))
+                                .rotation3DEffect(.degrees(rotation), axis: (x: 1, y: 1, z: 0))
+                        }
                     }
-                    
+                 
                     //All the decorations
                     ZStack {
                         Image("Red Peppermint").resizable().frame(width: 60, height: 60).offset(x: 150, y: -370)
@@ -43,11 +49,10 @@ struct ContentView: View {
                         NavigationLink("About The Game", destination: InstructionsView())
                             .font(Font.custom("Times New Roman", size: 24))
                     }
-                   
+                    
                     ZStack {
                         Button("Randomize") {
-                            
-                            chooseRandom(times: 3)
+                            chooseRandom(times: 5)
                             withAnimation(.interpolatingSpring(stiffness: 10, damping: 2)) {
                                 rotation += 360
                             }
@@ -55,8 +60,19 @@ struct ContentView: View {
                         .buttonStyle(CustomButtonStyle())
                     }
                     .offset(x: -4, y: 270)
-                    
+                    ZStack {
+                        TextField("How Much?", text: $GuessPriceOne)
+                            .font(Font.custom("Times New Roman", size: 30)).bold().offset(x: 120, y: -190).underline()
+                        Button("Check Price") {
+                            if let priceOne = Int(GuessPriceOne) {
+                                
+                            }
+                        }
+                        .buttonStyle(CustomButtonStyle())
+                        .offset(x: 0, y: 190)
+                    }
                 }
+                
             }
         }
     }
@@ -91,10 +107,12 @@ struct ContentView: View {
                         Spacer()
                         VStack {
                             NavigationLink("Info On The Presents", destination: InstructionsView2()).font(Font.custom("Times New Roman", size: 30)).bold()
+                             
                         }
                         Spacer()
                         Spacer()
                         Spacer()
+                    
                     }
                 }
             }
@@ -135,7 +153,8 @@ struct ContentView: View {
               
         }
     }
-        
+       
+
     
 }
     #Preview {
